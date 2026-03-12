@@ -24,6 +24,7 @@
               # Packages that should be installed on a system
               systemPackages = [
                 pkgs.just
+                pkgs.tree
                 system-manager
               ];
 

@@ -14,4 +14,4 @@ switch-init:
 
 # Switch system configuration
 switch:
-  sudo system-manager switch --flake .
+  sudo "$(which system-manager)" switch --flake .
