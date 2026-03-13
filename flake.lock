@@ -140,6 +140,26 @@
         "type": "github"
       }
     },
+    "lefthook-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770377107,
+        "narHash": "sha256-/QEXSDeAo5RK81PtM0yDhmt9k3v1/pse/jsrT1yXNhU=",
+        "owner": "sudosubin",
+        "repo": "lefthook.nix",
+        "rev": "9cdaf7ce95ae77cbabc5b556bdd35d3cf0b849f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sudosubin",
+        "repo": "lefthook.nix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1772963539,
@@ -189,8 +209,10 @@
         "claudebox": "claudebox",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
+        "lefthook-nix": "lefthook-nix",
         "nixpkgs": "nixpkgs",
-        "system-manager": "system-manager"
+        "system-manager": "system-manager",
+        "treefmt-nix": "treefmt-nix_2"
       }
     },
     "system-manager": {
@@ -257,6 +279,26 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "rev": "42d96e75aa56a3f70cab7e7dc4a32868db28e8fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773297127,
+        "narHash": "sha256-6E/yhXP7Oy/NbXtf1ktzmU8SdVqJQ09HC/48ebEGBpk=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "71b125cd05fbfd78cab3e070b73544abe24c5016",
         "type": "github"
       },
       "original": {

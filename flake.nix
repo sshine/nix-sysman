@@ -19,6 +19,12 @@
 
     claudebox.url = "github:numtide/claudebox";
     claudebox.inputs.nixpkgs.follows = "nixpkgs";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    lefthook-nix.url = "github:sudosubin/lefthook.nix";
+    lefthook-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

@@ -1,18 +1,24 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   systems = [ "x86_64-linux" ];
 
   flake.systemConfigs.default = inputs.system-manager.lib.makeSystemConfig {
     modules = [
+      config.flake.nixosModules.packages
       (
         { lib, pkgs, system-manager, ... }:
         {
           config = {
             nixpkgs.hostPlatform = "x86_64-linux";
+            nixpkgs.config.allowUnfree = true;
 
             nix.settings = {
               build-users-group = "nixbld";
               trusted-users = [ "root" "sshine" ];
+              extra-substituters = [ "https://cache.numtide.com" ];
+              extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
+              accept-flake-config = true;
+              warn-dirty = false;
             };
 
             # Enable and configure services
@@ -21,13 +27,6 @@
             };
 
             environment = {
-              # Packages that should be installed on a system
-              systemPackages = [
-                pkgs.just
-                pkgs.tree
-                system-manager
-              ];
-
               # Add directories and files to `/etc` and set their permissions
               etc = {
                 # with_ownership = {
