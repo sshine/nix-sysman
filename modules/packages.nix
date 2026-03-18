@@ -1,14 +1,24 @@
 { inputs, ... }:
 {
   flake.nixosModules.packages =
-    { lib, pkgs, system-manager, ... }:
+    {
+      lib,
+      pkgs,
+      system-manager,
+      ...
+    }:
+    let
+      walltime-rs = inputs.walltime-rs.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       config = {
         environment.systemPackages = [
-          pkgs.just
-          pkgs.tree
-          pkgs.lastpass-cli
           system-manager
+          pkgs.just
+          pkgs.dig
+          pkgs.tree
+          pkgs.proton-pass-cli
+          walltime-rs.default
         ];
       };
     };
