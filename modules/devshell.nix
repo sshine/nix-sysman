@@ -15,6 +15,9 @@
           pre-commit.commands.treefmt = {
             run = "treefmt --fail-on-change --no-cache {staged_files}";
           };
+          pre-push.commands.strip-co-authored-by = {
+            run = ".github/hooks/pre-push.sh";
+          };
         };
       };
     in
