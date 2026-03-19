@@ -17,7 +17,8 @@ fi
 
 echo "pre-push: Stripping Co-Authored-By trailers from unpushed commits..." >&2
 
-git rebase "$upstream" --exec 'msg=$(git log --format=%B -n1); cleaned=$(echo "$msg" | sed -e "/^[Cc]o-[Aa]uthored-[Bb]y:/d" -e :a -e "/^\n*$/{\$d;N;ba;}"); if [ "$msg" != "$cleaned" ]; then git commit --amend --no-verify -m "$cleaned"; fi'
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --msg-filter \
+    'sed -e "/^[Cc]o-[Aa]uthored-[Bb]y:/d" -e :a -e "/^\n*$/{\$d;N;ba;}"' \
+    "$upstream"..HEAD
 
-echo "pre-push: Done. Commits rewritten. Push again to continue." >&2
-exit 1
+echo "pre-push: Done. Commits rewritten." >&2
