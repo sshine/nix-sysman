@@ -15,7 +15,7 @@
         environment.systemPackages = [
           system-manager
           pkgs.just
-          pkgs.dig
+          pkgs.dnsutils
           pkgs.tree
           pkgs.proton-pass-cli
           walltime-rs.default

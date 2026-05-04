@@ -31,6 +31,12 @@
 
     walltime-rs.url = "github:sshine/walltime-rs";
     walltime-rs.inputs.nixpkgs.follows = "nixpkgs";
+
+    bubblebox.url = "github:nix-tools/bubblebox";
+    bubblebox.inputs.nixpkgs.follows = "nixpkgs";
+    bubblebox.inputs.flake-parts.follows = "flake-parts";
+    bubblebox.inputs.import-tree.follows = "import-tree";
+    bubblebox.inputs.treefmt-nix.follows = "treefmt-nix";
   };
 
   outputs =

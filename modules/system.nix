@@ -6,7 +6,12 @@
     modules = [
       config.flake.nixosModules.packages
       (
-        { lib, pkgs, system-manager, ... }:
+        {
+          lib,
+          pkgs,
+          system-manager,
+          ...
+        }:
         {
           config = {
             nixpkgs.hostPlatform = "x86_64-linux";
@@ -14,9 +19,16 @@
 
             nix.settings = {
               build-users-group = "nixbld";
-              trusted-users = [ "root" "sshine" ];
+              trusted-users = [
+                "root"
+                "sshine"
+              ];
               extra-substituters = [ "https://cache.numtide.com" ];
               extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
+              experimental-features = [
+                "nix-command"
+                "flakes"
+              ];
               accept-flake-config = true;
               warn-dirty = false;
             };
@@ -24,28 +36,23 @@
             # Enable and configure services
             services = {
               # nginx.enable = true;
+              userborn.enable = true;
+            };
+
+            users.users.sshine = {
+              isNormalUser = true;
+              extraGroups = [ "wheel" ];
             };
 
             environment = {
               # Add directories and files to `/etc` and set their permissions
               etc = {
-                # with_ownership = {
-                #   text = ''
-                #     This is just a test!
-                #   '';
-                #   mode = "0755";
-                #   uid = 5;
-                #   gid = 6;
-                # };
-                #
-                # with_ownership2 = {
-                #   text = ''
-                #     This is just a test!
-                #   '';
-                #   mode = "0755";
-                #   user = "nobody";
-                #   group = "users";
-                # };
+                "sudoers.d/wheel-nopasswd" = {
+                  text = "%wheel ALL=(ALL:ALL) NOPASSWD: ALL\n";
+                  mode = "0440";
+                  user = "root";
+                  group = "root";
+                };
               };
             };
 
